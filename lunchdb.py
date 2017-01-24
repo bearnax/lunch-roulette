@@ -1,49 +1,6 @@
 import random
 import numpy as np
-
-lunchplace = {
-    "name" : "",
-    "price" : "", #$, $$, $$$, $$$$, $$$$$
-    "cuisine" : "",
-    "street-address" : "",
-    "city" : "",
-    "zip" : ""
-}
-
-restaurant_pool = {
-    "r1" : {
-        "name" : "El Ray del Taco",
-        "price" : "$",
-        "cuisine" : "Mexican",
-        "street-address" : "5288 Buford Hwy NE",
-        "city" : "Doraville",
-        "zip" : "30346"
-    },
-    "r2" : {
-        "name" : "Super H Mart",
-        "price" : "$",
-        "cuisine" : "Asian",
-        "street-address" : "B, 6035 Peachtree Rd",
-        "city" : "Doraville",
-        "zip" : "30360"
-    },
-    "r3" : {
-        "name" : "Atlanta Chinatown",
-        "price" : "$$",
-        "cuisine" : "Asian",
-        "street-address" : "5383 New Peachtree Rd",
-        "city" : "Atlanta",
-        "zip" : "30341"
-    },
-    "r4" : {
-        "name" : "Mellow Mushroom",
-        "price" : "$$",
-        "cuisine" : "Pizza",
-        "street-address" : "5575 Chamblee Dunwoody Rd",
-        "city" : "Atlanta",
-        "zip" : "30338"
-    }
-}
+import time
 
 rawlist = [
     "H Mart",
@@ -87,10 +44,42 @@ rawlist = [
 # print numpy_item
 # print len(rawlist)
 
-print ".\n.\n.\n.\n.\n.\n.\n.\n."
-print np.random.choice(rawlist).upper()
-print "\n"
+def select_restaurant():
+    print "\nHere we go!!!"
+    time.sleep(1)
+    print "Who's hungry?!"
+    time.sleep(3)
+    print "\nI know I am."
+    time.sleep(1)
+    print "Your selected restaurant for lunch roulette is....."
+    time.sleep(3)
+    print "Drum roll please"
+    i = 0
+    while i < 15:
+        print "."
+        time.sleep(0.1)
+        i += 1
+    print np.random.choice(rawlist).upper()
+    time.sleep(1)
+    print "\nI'm really excited for you.\n"
 
+#Allow Vetos
+def veto():
+    i = 0
+    while i < 1:
+        veto = raw_input("Does someone want to veto?! [Yes or No]\n >")
+        if veto.upper() == "YES":
+            print "Well, let's do this again!"
+            select_restaurant()
+            i += 1
+        elif veto.upper() == "NO":
+            print "God speed, enjoy your dining experience"
+            i += 1
+        else:
+            print "Where did you learn how to type? Let's try this again.\n"
+
+select_restaurant()
+veto()
 
 # NEW FEATURES BASED ON GOOGLE SHEET AND MAPS API
 
