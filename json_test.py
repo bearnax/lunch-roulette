@@ -23,14 +23,14 @@ with open('participants.json', 'w') as json_data:
     # then set the available variable to true
 six_months = 365/2
 
-def respin_update():
+def reset_respin_availability():
     for item in d['people']:
         if d['people'][item]['respin']['available'] == False:
             if (datetime.date.today() - datetime.datetime.strptime(d['people'][item]['respin']['date-used'], '%Y-%m-%d').date()).days > six_months:
                 d['people'][item]['respin']['date-used'] = ""
                 d['people'][item]['respin']['available'] = True
 
-respin_update()
+reset_respin_availability()
 print "\nLarry new NEW status"
 print d['people']['larry']['respin']['available']
 print d['people']['larry']['respin']['date-used']
