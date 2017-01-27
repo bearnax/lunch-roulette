@@ -22,7 +22,6 @@ with open('participants.json', 'w') as json_data:
 # if a particpant used their respin and that respin was more than 6 months ago
     # then set the available variable to true
 six_months = 365/2
-
 def reset_respin_availability():
     for item in d['people']:
         if d['people'][item]['respin']['available'] == False:

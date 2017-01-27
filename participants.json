@@ -3,7 +3,7 @@
         "amy": {
             "first-name": "Amy", 
             "last-name": "Mason", 
-            "nickname": "", 
+            "nickname": "The Queen of Snacks", 
             "respin": {
                 "available": true, 
                 "date-used": ""
@@ -32,14 +32,14 @@
             "last-name": "Ball", 
             "nickname": "The Delicate Lunch Flower", 
             "respin": {
-                "available": false, 
-                "date-used": "2016-08-09"
+                "available": true, 
+                "date-used": ""
             }
         }, 
         "leah": {
             "first-name": "Leah", 
             "last-name": "Wilson", 
-            "nickname": "", 
+            "nickname": "The Master of All Things Powerpoint", 
             "respin": {
                 "available": true, 
                 "date-used": ""
@@ -48,7 +48,7 @@
         "will": {
             "first-name": "Will", 
             "last-name": "Brodnax", 
-            "nickname": "", 
+            "nickname": "The Obese-T", 
             "respin": {
                 "available": true, 
                 "date-used": ""
