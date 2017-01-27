@@ -1,58 +1,58 @@
 {
-"people": {
-    "amy": {
-        "first-name": "Amy",
-        "last-name": "Mason",
-        "nickname": "",
-        "respin": {
-            "available": true,
-            "data-used": null
-        }
-    },
-    "larry": {
-        "first-name": "Larry",
-        "last-name": "Ball",
-        "nickname": "The Delicate Lunch Flower",
-        "respin": {
-            "available": true,
-            "data-used": null
-        }
-    },
-    "leah": {
-        "first-name": "Leah",
-        "last-name": "Wilson",
-        "nickname": "",
-        "respin": {
-            "available": true,
-            "data-used": null
-        }
-    },
-    "braden": {
-        "first-name": "Braden",
-        "last-name": "Turner",
-        "nickname": "The Aussie",
-        "respin": {
-            "available": true,
-            "data-used": null
-        }
-    },
-    "brian": {
-        "first-name": "Brian",
-        "last-name": "Cooper",
-        "nickname": "The Bug Squasher",
-        "respin": {
-            "available": true,
-            "data-used": null
-        }
-    },
-    "will": {
-        "first-name": "Will",
-        "last-name": "Brodnax",
-        "nickname": "",
-        "respin": {
-            "available": true,
-            "data-used": null
+    "people": {
+        "amy": {
+            "first-name": "Amy", 
+            "last-name": "Mason", 
+            "nickname": "", 
+            "respin": {
+                "available": true, 
+                "date-used": ""
+            }
+        }, 
+        "braden": {
+            "first-name": "Braden", 
+            "last-name": "Turner", 
+            "nickname": "The Aussie", 
+            "respin": {
+                "available": true, 
+                "date-used": ""
+            }
+        }, 
+        "brian": {
+            "first-name": "Brian", 
+            "last-name": "Cooper", 
+            "nickname": "The Bug Squasher", 
+            "respin": {
+                "available": true, 
+                "date-used": ""
+            }
+        }, 
+        "larry": {
+            "first-name": "Larry", 
+            "last-name": "Ball", 
+            "nickname": "The Delicate Lunch Flower", 
+            "respin": {
+                "available": false, 
+                "date-used": "2016-08-09"
+            }
+        }, 
+        "leah": {
+            "first-name": "Leah", 
+            "last-name": "Wilson", 
+            "nickname": "", 
+            "respin": {
+                "available": true, 
+                "date-used": ""
+            }
+        }, 
+        "will": {
+            "first-name": "Will", 
+            "last-name": "Brodnax", 
+            "nickname": "", 
+            "respin": {
+                "available": true, 
+                "date-used": ""
+            }
         }
     }
-}
 }
