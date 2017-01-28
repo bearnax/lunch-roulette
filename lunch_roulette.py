@@ -42,12 +42,14 @@ rawlist = [
 ]
 
 def roulette():
+    '''return a restaurant at random from the available list'''
     restaurant = np.random.choice(rawlist)
     return restaurant
 
 the_pick = roulette()
 
 def restaurant_chat():
+    '''make the running of roulette a little more fun'''
     print "Here we go!!!"
     time.sleep(1)
     print "Who's hungry?!"
@@ -66,29 +68,68 @@ def restaurant_chat():
     time.sleep(1)
     print "\nI'm really excited for you.\n"
 
-# def reset_respin_availability():
-#     '''first, check to see if there are any participants that have used their respin, and then see if it was outside of the last six months. If it is outside the last six months, then reset their ability to respin.'''
-#     for item in participant_dict['people']:
-#         if participant_dict['people'][item]['respin']['available'] == False:
-#             if (datetime.date.today() - datetime.datetime.strptime(participant_dict['people'][item]['respin']['date-used'], '%Y-%m-%d').date()).days > (364/2):
-#                 participant_dict['people'][item]['respin']['date-used'] = ""
-#                 participant_dict['people'][item]['respin']['available'] = True
-#
-# #FIX THIS!!!!
-# # def find_spin_status():
-# #     '''return a list of the participants who have an available respin and how long those who don't must wait before they earn it back'''
-# #     spins = {}
-# #     for item in participant_dict['people']:
-# #         if participant_dict['people'][item]['respin']['available'] == True:
-# #             spins[participant_dict[item] = {}
-# #         else:
-# #             spins[participant_dict[item] = False
-# #     return spins
-#
-# # without_spins.append((participant_dict['people'][item]['first-name'] + participant_dict['people'][item]['nickname'], (364/2) - (datetime.date.today() - datetime.datetime.strptime(participant_dict['people'][item]['respin']['date-used'], '%Y-%m-%d').date()).days))
-#
-# def respin():
+def respin_reset():
+    '''if it's been more than six months since a participant used a respin, reset it'''
+    for item in participant_dict['people']:
+        if participant_dict['people'][item]['respin']['available'] == False:
+            if (datetime.date.today() - datetime.datetime.strptime(participant_dict['people'][item]['respin']['date-used'], '%Y-%m-%d').date()).days > (364/2):
+                participant_dict['people'][item]['respin']['date-used'] = ""
+                participant_dict['people'][item]['respin']['available'] = True
+
+
+# without_spins.append((participant_dict['people'][item]['first-name'] + participant_dict['people'][item]['nickname'], (364/2) - (datetime.date.today() - datetime.datetime.strptime(participant_dict['people'][item]['respin']['date-used'], '%Y-%m-%d').date()).days))
+
+def shame(name_arg, i):
+    '''if someone tries to respin and they don't have one available, make fun of them.'''
+    date_used = participant_dict['people'][i]['respin']['date-used']
+    days_to_next_use = ((364/2) - (datetime.date.today() - datetime.datetime.strptime(participant_dict['people'][i]['respin']['date-used'], '%Y-%m-%d').date()).days)
+    print "WHOA, WHOA, WHOA!!!"
+    time.sleep(1)
+    print "Hold your horses there %s!!!" % name_arg
+    print "You used your re-spin back on %s" % date_used
+    time.sleep(3)
+    print "Someone needs to add 'SIMPLE ARITHMETIC' to their PDP, eh?"
+    time.sleep(3)
+    print "Since we all just found out that this isn't your strong suit, I'll figure it out for you."
+    time.sleep(5)
+    print "You have %d more days before you can use another respin." % days_to_next_use
+    print "Which is %s" % str(datetime.date.today() + datetime.timedelta(days_to_next_use))
+    time.sleep(3)
+    print "You may want to write that down."
+
+def check_spin_status(name_arg):
+    '''check to see if someone can respin'''
+    for i in participant_dict['people']:
+        if participant_dict['people'][i]['first-name'] == name_arg:
+            if participant_dict['people'][i]['respin']['available'] == True:
+                return roulette()
+            else:
+                return shame(name_arg, i)
+
+        # remind the user of the restaurant that was picked
+        # check to see if someone else wants to spin
+        # if no, end it
+        # if yes
+
+
+# def respin_chat():
 #     '''allow the ability for the user to respin if they think the restaurant selection sucks'''
+#     print "But the questions is, 'Are YOU excited?!'"
+#     time.sleep(0.5)
+#     print "Because there's something we can do about that."
+#     def ask_for_respin():
+#         return raw_input("Does anyone want to spin again? [Yes or No]\n> ")
+#     #if it's a yes, check to make sure the person that asked for the respin, actually has one
+#     if ask_for_respin().upper() == "YES":
+#         print "Hmmm......"
+#         time.sleep(1)
+#         print "Interesting...."
+#         time.sleep(1)
+#         print "And, who is it that would like to me to spin again?"
+#         time.sleep(0.5)
+#
+#
+#
 #     x = 0
 #     while x < 1:
 #         respin_choice = raw_input("How do you feel about this restaurant? Someone want to respin?! [Yes or No]\n> ")
@@ -130,8 +171,8 @@ def restaurant_chat():
 RUN STUFF DOWN HERE
 '''
 
-restaurant_chat()
-# respin()
+# restaurant_chat()
+# respin_chat()
 
 #update the participants json file with any changes that were made
 with open('participants.json', 'w') as json_data:
