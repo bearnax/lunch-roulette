@@ -67,19 +67,19 @@ def ask_for_respin_again():
 
 def process_respin_response(response):
     if response.upper() == "YES":
-        print "Hmmm......"
+        print "\nMmmm Hmmm......"
         time.sleep(1)
-        print "Interesting...."
+        print "\nInteresting...."
         time.sleep(1)
-        name_check = raw_input("And, who is requesting this spin?\n> ")
+        name_check = raw_input("\nAnd, who is requesting this spin?\n> ")
         check_spin_status(name_check)
     elif response.upper() == "NO":
         print "\nGod speed, enjoy your dining experience.\n"
     else:
         time.sleep(0.5)
-        print "Where did you learn how to type?"
+        print "\nWhere did you learn how to type?"
         time.sleep(0.5)
-        print "Let's try that again."
+        print "\nLet's try that again."
         ask_for_respin()
 
 def shame(name_arg, i):
@@ -89,25 +89,25 @@ def shame(name_arg, i):
     print "WHOA, WHOA, WHOA!!!"
     time.sleep(1)
     print "\nHold your horses there %s!!!" % name_arg
-    print "You used your re-spin back on %s" % date_used
+    print "\nYou used your re-spin back on %s" % date_used
     time.sleep(3)
     print "\nSomeone should think about adding 'SIMPLE ARITHMETIC' to their PDP, eh?"
     time.sleep(3)
-    print "You still have a little time before you can use another respin"
+    print "\nYou still have a little time before you can use another respin"
     time.sleep(2)
-    print "And, Since we all just found out math isn't your strong suit,\n I'll figure it out for you."
+    print "\nAnd, Since we all just found out math isn't your strong suit,\n I'll figure it out for you."
     time.sleep(3)
     print "\nYou have %d more days before you can use another respin." % days_to_next_use
-    print "Which is %s" % str(datetime.date.today() + datetime.timedelta(days_to_next_use))
+    print "\nWhich is %s" % str(datetime.date.today() + datetime.timedelta(days_to_next_use))
     time.sleep(3)
     print "\nYou may want to write that down.\n"
     time.sleep(2)
     ask_for_respin_again()
 
 def respin():
-    print "Your reqeust for a new spin has been approved by the Meal Enhancement Computer."
+    print "\nYour reqeust for a new spin has been approved by the Meal Enhancement Computer."
     time.sleep(2)
-    print "Also known as the... MEC"
+    print "\nAlso known as the... MEC"
     time.sleep(0.5)
     print "\nHere comes your new pick.\n\n\n"
     time.sleep(5)
@@ -120,7 +120,7 @@ def check_spin_status(name_arg):
     '''check to see if someone can respin'''
     respin_reset()
     for i in participant_dict['people']:
-        if participant_dict['people'][i]['first-name'] == name_arg:
+        if participant_dict['people'][i]['first-name'].upper() == name_arg.upper():
             if participant_dict['people'][i]['respin']['available'] == True:
                 time.sleep(3)
                 print "Alright, that checks out."
@@ -128,6 +128,10 @@ def check_spin_status(name_arg):
                 return respin()
             else:
                 return shame(name_arg, i)
+    print "\nI can't find that name on my list, so let's try again."
+    time.sleep(1)
+    new_name = raw_input("\nWho want's the respin? First name only please.\n> ")
+    return check_spin_status(new_name)
 
 def respin_chat():
     '''allow the ability for the user to respin if they think the restaurant selection sucks'''
@@ -164,7 +168,8 @@ def restaurant_chat():
 RUN STUFF DOWN HERE
 '''
 
-restaurant_chat()
+# restaurant_chat()
+ask_for_respin()
 
 #update the participants json file with any changes that were made
 with open('participants.json', 'w') as json_data:
