@@ -122,9 +122,11 @@ def check_spin_status(name_arg):
     for i in participant_dict['people']:
         if participant_dict['people'][i]['first-name'].upper() == name_arg.upper():
             if participant_dict['people'][i]['respin']['available'] == True:
-                time.sleep(3)
+                time.sleep(2)
                 print "Alright, that checks out."
-                time.sleep(1)
+                participant_dict['people'][i]['respin']['available'] == False
+                participant_dict['people'][i]['respin']['date-used'] == str(datetime.date.today())
+                time.sleep(2)
                 return respin()
             else:
                 return shame(name_arg, i)
@@ -135,9 +137,9 @@ def check_spin_status(name_arg):
 
 def respin_chat():
     '''allow the ability for the user to respin if they think the restaurant selection sucks'''
-    print "But I think we should be asking, 'Are YOU excited?!'"
+    print "\nBut I think we should be asking, 'Are YOU excited?!'"
     time.sleep(3)
-    print "Because we can do something about that if you're not."
+    print "\nBecause we can do something about that if you're not."
     time.sleep(3)
     ask_for_respin()
 
@@ -145,13 +147,13 @@ def restaurant_chat():
     '''make the running of roulette a little more fun'''
     print "Here we go!!!"
     time.sleep(1)
-    print "Who's hungry?!"
+    print "\nWho's hungry?!"
     time.sleep(2)
     print "\n...I know I am."
     time.sleep(1)
-    print "Your selected restaurant for lunch roulette is....."
+    print "\nYour selected restaurant for lunch roulette is....."
     time.sleep(3)
-    print "I need a drum roll here!"
+    print "\nI need a drum roll here!"
     time.sleep(1)
     i = 0
     while i < 30:
@@ -168,8 +170,7 @@ def restaurant_chat():
 RUN STUFF DOWN HERE
 '''
 
-# restaurant_chat()
-ask_for_respin()
+restaurant_chat()
 
 #update the participants json file with any changes that were made
 with open('participants.json', 'w') as json_data:
