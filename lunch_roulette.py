@@ -41,7 +41,13 @@ rawlist = [
     #too far "Sushi Kiko"
 ]
 
-def select_restaurant():
+def roulette():
+    restaurant = np.random.choice(rawlist)
+    return restaurant
+
+the_pick = roulette()
+
+def restaurant_chat():
     print "\nHere we go!!!"
     time.sleep(1)
     print "Who's hungry?!"
@@ -56,13 +62,9 @@ def select_restaurant():
         print "."
         time.sleep(0.1)
         i += 1
-    restaurant = np.random.choice(rawlist).upper()
-    print restaurant
+    print the_pick
     time.sleep(1)
     print "\nI'm really excited for you.\n"
-    return restaurant
-
-the_pick = select_restaurant()
 
 def reset_respin_availability():
     '''first, check to see if there are any participants that have used their respin, and then see if it was outside of the last six months. If it is outside the last six months, then reset their ability to respin.'''
@@ -116,7 +118,7 @@ def respin():
                     if potential_spinner.upper() == key].upper():
                         participant_dict['people'][i]['respin']['available'] = False
                         participant_dict['people'][i]['respin']['date-used'] = str(datetime.date.today())
-                        select_restaurant()
+                        restaurant_chat()
             x += 1
         elif respin_choice.upper() == "NO":
             print "God speed, enjoy your dining experience"
@@ -124,7 +126,7 @@ def respin():
         else:
             print "Where did you learn how to type? Let's try this again.\n"
 
-# select_restaurant()
+# restaurant_chat()
 respin()
 
 #update the participants json file with any changes that were made
