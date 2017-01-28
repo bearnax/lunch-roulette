@@ -48,86 +48,90 @@ def roulette():
 the_pick = roulette()
 
 def restaurant_chat():
-    print "\nHere we go!!!"
+    print "Here we go!!!"
     time.sleep(1)
     print "Who's hungry?!"
-    time.sleep(3)
-    print "\nI know I am."
+    time.sleep(2)
+    print "\n...I know I am."
     time.sleep(1)
     print "Your selected restaurant for lunch roulette is....."
     time.sleep(3)
-    print "Drum roll please"
+    print "I need a drum roll here!"
     i = 0
-    while i < 15:
+    while i < 30:
         print "."
-        time.sleep(0.1)
+        time.sleep(0.05)
         i += 1
-    print the_pick
+    print "\n" + the_pick
     time.sleep(1)
     print "\nI'm really excited for you.\n"
 
-def reset_respin_availability():
-    '''first, check to see if there are any participants that have used their respin, and then see if it was outside of the last six months. If it is outside the last six months, then reset their ability to respin.'''
-    for item in participant_dict['people']:
-        if participant_dict['people'][item]['respin']['available'] == False:
-            if (datetime.date.today() - datetime.datetime.strptime(participant_dict['people'][item]['respin']['date-used'], '%Y-%m-%d').date()).days > (364/2):
-                participant_dict['people'][item]['respin']['date-used'] = ""
-                participant_dict['people'][item]['respin']['available'] = True
+# def reset_respin_availability():
+#     '''first, check to see if there are any participants that have used their respin, and then see if it was outside of the last six months. If it is outside the last six months, then reset their ability to respin.'''
+#     for item in participant_dict['people']:
+#         if participant_dict['people'][item]['respin']['available'] == False:
+#             if (datetime.date.today() - datetime.datetime.strptime(participant_dict['people'][item]['respin']['date-used'], '%Y-%m-%d').date()).days > (364/2):
+#                 participant_dict['people'][item]['respin']['date-used'] = ""
+#                 participant_dict['people'][item]['respin']['available'] = True
+#
+# #FIX THIS!!!!
+# # def find_spin_status():
+# #     '''return a list of the participants who have an available respin and how long those who don't must wait before they earn it back'''
+# #     spins = {}
+# #     for item in participant_dict['people']:
+# #         if participant_dict['people'][item]['respin']['available'] == True:
+# #             spins[participant_dict[item] = {}
+# #         else:
+# #             spins[participant_dict[item] = False
+# #     return spins
+#
+# # without_spins.append((participant_dict['people'][item]['first-name'] + participant_dict['people'][item]['nickname'], (364/2) - (datetime.date.today() - datetime.datetime.strptime(participant_dict['people'][item]['respin']['date-used'], '%Y-%m-%d').date()).days))
+#
+# def respin():
+#     '''allow the ability for the user to respin if they think the restaurant selection sucks'''
+#     x = 0
+#     while x < 1:
+#         respin_choice = raw_input("How do you feel about this restaurant? Someone want to respin?! [Yes or No]\n> ")
+#         if respin_choice.upper() == "YES":
+#             spin_status = find_spin_status()
+#             print "Hmmm....."
+#             time.sleep(1)
+#             print "Interesting..."
+#             time.sleep(1)
+#             print "Let me just check something right quick..."
+#             time.sleep(1)
+#             if len(spin_status) == 0:
+#                 print "That's gonna be a problem, because there isn't ONE of you that's waited long enough to earn your spin back."
+#                 time.sleep(1)
+#                 print "SHAME!!!!"
+#                 time.sleep(1)
+#                 print "You're going to %s whether you like it or not!" % the_pick
+#                 break
+#             else:
+#                 print "Good news!"
+#                 time.sleep(0.25)
+#                 print "There are %d of you with spins available" % len(spin_status)
+#                 potential_spinner = raw_input("Who want to use their respin? First name only please.\n> ")
+#
+#                 #FIX THISS!!!!!!
+#                 for key in spin_status:
+#                     if potential_spinner.upper() == key].upper():
+#                         participant_dict['people'][i]['respin']['available'] = False
+#                         participant_dict['people'][i]['respin']['date-used'] = str(datetime.date.today())
+#                         restaurant_chat()
+#             x += 1
+#         elif respin_choice.upper() == "NO":
+#             print "God speed, enjoy your dining experience"
+#             x += 1
+#         else:
+#             print "Where did you learn how to type? Let's try this again.\n"
 
-#FIX THIS!!!!
-def find_spin_status():
-    '''return a list of the participants who have an available respin and how long those who don't must wait before they earn it back'''
-    spins = {}
-    for item in participant_dict['people']:
-        if participant_dict['people'][item]['respin']['available'] == True:
-            spins[participant_dict[item] = {}
-        else:
-            spins[participant_dict[item] = False
-    return spins
+'''
+RUN STUFF DOWN HERE
+'''
 
-# without_spins.append((participant_dict['people'][item]['first-name'] + participant_dict['people'][item]['nickname'], (364/2) - (datetime.date.today() - datetime.datetime.strptime(participant_dict['people'][item]['respin']['date-used'], '%Y-%m-%d').date()).days))
-
-def respin():
-    '''allow the ability for the user to respin if they think the restaurant selection sucks'''
-    x = 0
-    while x < 1:
-        respin_choice = raw_input("How do you feel about this restaurant? Someone want to respin?! [Yes or No]\n> ")
-        if respin_choice.upper() == "YES":
-            spin_status = find_spin_status()
-            print "Hmmm....."
-            time.sleep(1)
-            print "Interesting..."
-            time.sleep(1)
-            print "Let me just check something right quick..."
-            time.sleep(1)
-            if len(spin_status) == 0:
-                print "That's gonna be a problem, because there isn't ONE of you that's waited long enough to earn your spin back."
-                time.sleep(1)
-                print "SHAME!!!!"
-                time.sleep(1)
-                print "You're going to %s whether you like it or not!" % the_pick
-                break
-            else:
-                print "Good news!"
-                time.sleep(0.25)
-                print "There are %d of you with spins available" % len(spin_status)
-                potential_spinner = raw_input("Who want to use their respin? First name only please.\n> ")
-
-                #FIX THISS!!!!!!
-                for key in spin_status:
-                    if potential_spinner.upper() == key].upper():
-                        participant_dict['people'][i]['respin']['available'] = False
-                        participant_dict['people'][i]['respin']['date-used'] = str(datetime.date.today())
-                        restaurant_chat()
-            x += 1
-        elif respin_choice.upper() == "NO":
-            print "God speed, enjoy your dining experience"
-            x += 1
-        else:
-            print "Where did you learn how to type? Let's try this again.\n"
-
-# restaurant_chat()
-respin()
+restaurant_chat()
+# respin()
 
 #update the participants json file with any changes that were made
 with open('participants.json', 'w') as json_data:
