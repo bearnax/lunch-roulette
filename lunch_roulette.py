@@ -65,6 +65,11 @@ def ask_for_respin_again():
     response = raw_input("\nAnyone else wanna go!? [Yes or No]\n> ")
     return process_respin_response(response)
 
+def update_spin_status(dict_id):
+    '''when a person uses their respin, set their availability to false and set their date used to today'''
+    participant_dict['people'][dict_id]['respin']['available'] = False
+    participant_dict['people'][dict_id]['respin']['date-used'] = str(datetime.date.today())
+
 def process_respin_response(response):
     if response.upper() == "YES":
         print "\nMmmm Hmmm......"
@@ -124,8 +129,7 @@ def check_spin_status(name_arg):
             if participant_dict['people'][i]['respin']['available'] == True:
                 time.sleep(2)
                 print "Alright, that checks out."
-                participant_dict['people'][i]['respin']['available'] == False
-                participant_dict['people'][i]['respin']['date-used'] == str(datetime.date.today())
+                update_spin_status(i)
                 time.sleep(2)
                 return respin()
             else:

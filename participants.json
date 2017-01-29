@@ -1,56 +1,56 @@
 {
     "people": {
         "amy": {
-            "first-name": "Amy", 
-            "last-name": "Mason", 
-            "nickname": "", 
+            "first-name": "Amy",
+            "last-name": "Mason",
+            "nickname": "",
             "respin": {
-                "available": true, 
+                "available": true,
                 "date-used": ""
             }
-        }, 
+        },
         "braden": {
-            "first-name": "Braden", 
-            "last-name": "Turner", 
-            "nickname": "The Aussie", 
+            "first-name": "Braden",
+            "last-name": "Turner",
+            "nickname": "The Aussie",
             "respin": {
-                "available": true, 
+                "available": true,
                 "date-used": ""
             }
-        }, 
+        },
         "brian": {
-            "first-name": "Brian", 
-            "last-name": "Cooper", 
-            "nickname": "The Bug Squasher", 
+            "first-name": "Brian",
+            "last-name": "Cooper",
+            "nickname": "The Bug Squasher",
             "respin": {
-                "available": true, 
+                "available": true,
                 "date-used": ""
             }
-        }, 
+        },
         "larry": {
-            "first-name": "Larry", 
-            "last-name": "Ball", 
-            "nickname": "The Delicate Lunch Flower", 
+            "first-name": "Larry",
+            "last-name": "Ball",
+            "nickname": "The Delicate Lunch Flower",
             "respin": {
-                "available": true, 
+                "available": true,
                 "date-used": ""
             }
-        }, 
+        },
         "leah": {
-            "first-name": "Leah", 
-            "last-name": "Wilson", 
-            "nickname": "", 
+            "first-name": "Leah",
+            "last-name": "Wilson",
+            "nickname": "",
             "respin": {
-                "available": false, 
-                "date-used": "2017-01-27"
+                "available": true,
+                "date-used": ""
             }
-        }, 
+        },
         "will": {
-            "first-name": "Will", 
-            "last-name": "Brodnax", 
-            "nickname": "", 
+            "first-name": "Will",
+            "last-name": "Brodnax",
+            "nickname": "",
             "respin": {
-                "available": true, 
+                "available": true,
                 "date-used": ""
             }
         }
