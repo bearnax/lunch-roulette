@@ -1,5 +1,4 @@
 import random
-import numpy as np
 import time
 import json
 import datetime
@@ -8,45 +7,17 @@ import datetime
 with open('participants.json') as json_data:
     participant_dict = json.load(json_data)
 
-rawlist = [
-    "H Mart",
-    "El Ray del Taco",
-    "Chinese Cultural Center",
-    "Mellow Mushroom",
-    "Heirloom BBQ",
-    #too far "Fat Matt's",
-    "Pho and/or Bahn Mis",
-    "Costco",
-    "Eclipse di Luna",
-    "Desta",
-    "Cho Dang Tofu House (Korean BBQ)",
-    "Flying Biscuit",
-    "Waffle House",
-    "ShakeShack",
-    "Olive Garden",
-    "Marlow's Tavern",
-    "Superica",
-    "Greek",
-    "Chick-fil-a",
-    #too far "Australian Bakery",
-    "Takorea",
-    "Taco Veloz",
-    "McDonald's",
-    #too far "Purnima",
-    "Teela Taqueria",
-    "Royal China, Dim Sum",
-    "CowFish",
-    "J's Mini HotPot Deluxe",
-    "Nori Nori",
-    #too far "Sushi Kiko"
-]
+with open('lunch_locations.json') as json_data:
+    lunch_dict = json.load(json_data)
 
 def roulette():
     '''return a restaurant at random from the available list'''
-    restaurant = np.random.choice(rawlist)
-    return restaurant
+    i = random.sample(lunch_dict['locations'], 1)
+    return i[0]
 
-the_pick = roulette()
+the_pick = lunch_dict['locations'][roulette()]['name']
+print the_pick
+
 new_pick = ""
 
 def respin_reset():
@@ -170,28 +141,14 @@ def restaurant_chat():
     time.sleep(4)
     respin_chat()
 
-'''
-RUN STUFF DOWN HERE
-'''
 
-restaurant_chat()
+''' RUN STUFF DOWN HERE '''
+
+# restaurant_chat()
 
 #update the participants json file with any changes that were made
 with open('participants.json', 'w') as json_data:
     json.dump(participant_dict, json_data, sort_keys=True, indent=4)
 
-
-
-
-# NEW FEATURES BASED ON GOOGLE SHEET AND MAPS API
-
-# Import the spreadsheet and create a data table using pandas
-
-# FUNCTION: Pick a restaurant within the users driving limits
-    # Remove the restaurants that are too far away
-        # Ask the user how far away (in minutes) they're willing to go to eat
-        # Use the Maps API to filter out anything greater than distance entered
-        # Return a list of restaurants to pick from
-            # Show the user the list of what was excluded
-            # Pick a random restaurant from the remaining pool
-            # Show the user the restaurant name, address, cuisine, $$, and driving distance with and without traffic for the current time.
+with open('lunch_locations.json', 'w') as json_data:
+    json.dump(lunch_dict, json_data, sort_keys=True, indent=4)

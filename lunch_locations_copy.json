@@ -1,0 +1,154 @@
+{
+    "locations" : {
+        "r1" : {
+            "name" : "H Mart",
+            "date-selected" : "",
+            "include" : true
+        },
+        "r2" : {
+            "name" : "H El Ray del Taco",
+            "date-selected" : "",
+            "include" : true
+        },
+        "r3" : {
+            "name" : "Chinese Cultural Center",
+            "date-selected" : "",
+            "include" : true
+        },
+        "r4" : {
+            "name" : "Mellow Mushroom",
+            "date-selected" : "",
+            "include" : true
+        },
+        "r5" : {
+            "name" : "Heirloom BBQ",
+            "date-selected" : "",
+            "include" : true
+        },
+        "r6" : {
+            "name" : "Lee's Bakery",
+            "date-selected" : "",
+            "include" : true
+        },
+        "r7" : {
+            "name" : "Costco",
+            "date-selected" : "",
+            "include" : true
+        },
+        "r8" : {
+            "name" : "Eclipse di Luna",
+            "date-selected" : "",
+            "include" : true
+        },
+        "r9" : {
+            "name" : "Desta",
+            "date-selected" : "",
+            "include" : true
+        },
+        "r10" : {
+            "name" : "Cho Dang Tofu House (Korean BBQ)",
+            "date-selected" : "",
+            "include" : true
+        },
+        "r11" : {
+            "name" : "Flying Biscuit",
+            "date-selected" : "",
+            "include" : true
+        },
+        "r12" : {
+            "name" : "Waffle House",
+            "date-selected" : "",
+            "include" : true
+        },
+        "r13" : {
+            "name" : "ShakeShack",
+            "date-selected" : "2017-01-24",
+            "include" : false
+        },
+        "r14" : {
+            "name" : "Fat Matt's",
+            "date-selected" : "",
+            "include" : false
+        },
+        "r15" : {
+            "name" : "Olive Garden",
+            "date-selected" : "",
+            "include" : true
+        },
+        "r16" : {
+            "name" : "Marlow's Tavern",
+            "date-selected" : "",
+            "include" : true
+        },
+        "r17" : {
+            "name" : "Superica",
+            "date-selected" : "",
+            "include" : true
+        },
+        "r18" : {
+            "name" : "Greek",
+            "date-selected" : "",
+            "include" : true
+        },
+        "r19" : {
+            "name" : "Chick-fil-a",
+            "date-selected" : "",
+            "include" : true
+        },
+        "r20" : {
+            "name" : "Australian Bakery",
+            "date-selected" : "",
+            "include" : false
+        },
+        "r21" : {
+            "name" : "Takorea",
+            "date-selected" : "",
+            "include" : true
+        },
+        "r22" :
+            "name" : "Taco Veloz",
+            "date-selected" : "",
+            "include" : true
+        },
+        "r23" : {
+            "name" : "McDonald's",
+            "date-selected" : "",
+            "include" : true
+        },
+        "r24" : {
+            "name" : "Purnima",
+            "date-selected" : "",
+            "include" : false
+        },
+        "r25" : {
+            "name" : "Teela Taqueria",
+            "date-selected" : "",
+            "include" : true
+        },
+        "r26" : {
+            "name" : "Royal China (Dim Sum)",
+            "date-selected" : "",
+            "include" : true
+        },
+        "r27" : {
+            "name" : "Cowfish",
+            "date-selected" : "",
+            "include" : true
+        },
+        "r28" : {
+            "name" : "J's Mini HotPot Deluxe",
+            "date-selected" : "",
+            "include" : true
+        },
+        "r29" : {
+            "name" : "Nori Nori",
+            "date-selected" : "",
+            "include" : true
+        },
+        "r30" : {
+            "name" : "Sushi Kiko",
+            "date-selected" : "",
+            "include" : false
+        },
+    }
+}
