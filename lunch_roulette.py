@@ -1,7 +1,7 @@
-import random
 import time
 import json
 import datetime
+import numpy
 
 #import all the participants and their ridiculous data
 with open('participants.json') as json_data:
@@ -12,21 +12,32 @@ with open('lunch_locations.json') as json_data:
 
 def roulette():
     '''return a restaurant at random from the available list'''
-    i = random.sample(lunch_dict['locations'], 1)
-    return i[0]
+    restaurant_list = []
+    for i in lunch_dict['locations']:
+        if lunch_dict['locations'][i]['available'] == True and lunch_dict['locations'][i]['include'] == True:
+            restaurant_list.append(i)
+    return numpy.random.choice(restaurant_list)
 
-the_pick = lunch_dict['locations'][roulette()]['name']
-print the_pick
-
-new_pick = ""
+''' SET THE PICKS AND CREATE GLOBAL VARIABLES '''
+first_pick = lunch_dict['locations'][roulette()]['name']
+print first_pick
+second_pick = ""
 
 def respin_reset():
     '''if it's been more than six months since a participant used a respin, reset it'''
-    for item in participant_dict['people']:
-        if participant_dict['people'][item]['respin']['available'] == False:
-            if (datetime.date.today() - datetime.datetime.strptime(participant_dict['people'][item]['respin']['date-used'], '%Y-%m-%d').date()).days > (364/2):
-                participant_dict['people'][item]['respin']['date-used'] = ""
-                participant_dict['people'][item]['respin']['available'] = True
+    for i in participant_dict['people']:
+        if participant_dict['people'][i]['respin']['available'] == False:
+            if (datetime.date.today() - datetime.datetime.strptime(participant_dict['people'][i]['respin']['date-used'], '%Y-%m-%d').date()).days > (364/2):
+                participant_dict['people'][i]['respin']['date-used'] = ""
+                participant_dict['people'][i]['respin']['available'] = True
+
+def lunch_location_availability_reset():
+    '''if it's been more than six months since a lunch location was used, reset it'''
+    for i in lunch_dict['locations']:
+        if lunch_dict['locations'][i]['available'] == False:
+            if (datetime.date.today() - datetime.datetime.strptime(lunch_dict['location'][i]['date-selected'], '%Y-%m-%d').date()).days > (364/2):
+                lunch_dict['locations'][i]['date-selected'] = ""
+                lunch_dict['locations'][i]['available'] = True
 
 def ask_for_respin():
     response = raw_input("\nDoes anyone want to spin again? [Yes or No]\n> ")
@@ -87,8 +98,8 @@ def respin():
     time.sleep(0.5)
     print "\nHere comes your new pick.\n\n\n"
     time.sleep(5)
-    new_pick = roulette()
-    print new_pick.upper()
+    second_pick = lunch_dict['locations'][roulette()]['name']
+    print second_pick.upper()
     time.sleep(3)
     print "\nI hope you feel good about your choice.\n"
 
@@ -135,16 +146,28 @@ def restaurant_chat():
         print "."
         time.sleep(0.05)
         i += 1
-    print "\n" + the_pick
+    print "\n" + first_pick
     time.sleep(1)
     print "\nI'm really excited for you.\n"
     time.sleep(4)
     respin_chat()
 
+def set_restaurant_status():
+    if len(second_pick) > 0:
+        for i in lunch_dict['locations']:
+            if lunch_dict['locations'][i]['name'] == second_pick:
+                lunch_dict['locations'][i]['date-selected'] = str(datetime.date.today())
+                lunch_dict['locations'][i]['available'] = False
+    elif len(first_pick) > 0:
+        for i in lunch_dict['locations']:
+            if lunch_dict['locations'][i]['name'] == first_pick:
+                lunch_dict['locations'][i]['date-selected'] = str(datetime.date.today())
+                lunch_dict['locations'][i]['available'] = False
 
 ''' RUN STUFF DOWN HERE '''
 
-# restaurant_chat()
+restaurant_chat()
+set_restaurant_status()
 
 #update the participants json file with any changes that were made
 with open('participants.json', 'w') as json_data:

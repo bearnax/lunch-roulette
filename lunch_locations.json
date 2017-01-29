@@ -1,151 +1,181 @@
 {
     "locations": {
         "r1": {
+            "available": true, 
             "date-selected": "", 
             "include": true, 
             "name": "H Mart"
         }, 
         "r10": {
+            "available": true, 
             "date-selected": "", 
             "include": true, 
             "name": "Cho Dang Tofu House (Korean BBQ)"
         }, 
         "r11": {
-            "date-selected": "", 
+            "available": false, 
+            "date-selected": "2017-01-29", 
             "include": true, 
             "name": "Flying Biscuit"
         }, 
         "r12": {
+            "available": true, 
             "date-selected": "", 
             "include": true, 
             "name": "Waffle House"
         }, 
         "r13": {
+            "available": false, 
             "date-selected": "2017-01-24", 
-            "include": false, 
+            "include": true, 
             "name": "ShakeShack"
         }, 
         "r14": {
+            "available": true, 
             "date-selected": "", 
             "include": false, 
             "name": "Fat Matt's"
         }, 
         "r15": {
+            "available": true, 
             "date-selected": "", 
             "include": true, 
             "name": "Olive Garden"
         }, 
         "r16": {
+            "available": true, 
             "date-selected": "", 
             "include": true, 
             "name": "Marlow's Tavern"
         }, 
         "r17": {
+            "available": true, 
             "date-selected": "", 
             "include": true, 
             "name": "Superica"
         }, 
         "r18": {
+            "available": true, 
             "date-selected": "", 
             "include": true, 
             "name": "Greek"
         }, 
         "r19": {
+            "available": true, 
             "date-selected": "", 
             "include": true, 
             "name": "Chick-fil-a"
         }, 
         "r2": {
+            "available": true, 
             "date-selected": "", 
             "include": true, 
-            "name": "H El Ray del Taco"
+            "name": "El Ray del Taco"
         }, 
         "r20": {
+            "available": true, 
             "date-selected": "", 
             "include": false, 
             "name": "Australian Bakery"
         }, 
         "r21": {
+            "available": true, 
             "date-selected": "", 
             "include": true, 
             "name": "Takorea"
         }, 
         "r22": {
+            "available": true, 
             "date-selected": "", 
             "include": true, 
             "name": "Taco Veloz"
         }, 
         "r23": {
+            "available": true, 
             "date-selected": "", 
             "include": true, 
             "name": "McDonald's"
         }, 
         "r24": {
+            "available": true, 
             "date-selected": "", 
             "include": false, 
             "name": "Purnima"
         }, 
         "r25": {
+            "available": true, 
             "date-selected": "", 
             "include": true, 
             "name": "Teela Taqueria"
         }, 
         "r26": {
+            "available": true, 
             "date-selected": "", 
             "include": true, 
             "name": "Royal China (Dim Sum)"
         }, 
         "r27": {
+            "available": true, 
             "date-selected": "", 
             "include": true, 
             "name": "Cowfish"
         }, 
         "r28": {
+            "available": true, 
             "date-selected": "", 
             "include": true, 
             "name": "J's Mini HotPot Deluxe"
         }, 
         "r29": {
+            "available": true, 
             "date-selected": "", 
             "include": true, 
             "name": "Nori Nori"
         }, 
         "r3": {
+            "available": true, 
             "date-selected": "", 
             "include": true, 
             "name": "Chinese Cultural Center"
         }, 
         "r30": {
+            "available": true, 
             "date-selected": "", 
             "include": false, 
             "name": "Sushi Kiko"
         }, 
         "r4": {
+            "available": true, 
             "date-selected": "", 
             "include": true, 
             "name": "Mellow Mushroom"
         }, 
         "r5": {
+            "available": true, 
             "date-selected": "", 
             "include": true, 
             "name": "Heirloom BBQ"
         }, 
         "r6": {
+            "available": true, 
             "date-selected": "", 
             "include": true, 
             "name": "Lee's Bakery"
         }, 
         "r7": {
+            "available": true, 
             "date-selected": "", 
             "include": true, 
             "name": "Costco"
         }, 
         "r8": {
-            "date-selected": "", 
+            "available": false, 
+            "date-selected": "2017-01-29", 
             "include": true, 
             "name": "Eclipse di Luna"
         }, 
         "r9": {
+            "available": true, 
             "date-selected": "", 
             "include": true, 
             "name": "Desta"
