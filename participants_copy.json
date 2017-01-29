@@ -6,7 +6,7 @@
             "nickname": "",
             "respin": {
                 "available": true,
-                "date-used": null
+                "date-used":""
             }
         },
         "braden": {
@@ -15,7 +15,7 @@
             "nickname": "The Aussie",
             "respin": {
                 "available": true,
-                "date-used": null
+                "date-used": ""
             }
         },
         "brian": {
@@ -24,7 +24,7 @@
             "nickname": "The Bug Squasher",
             "respin": {
                 "available": true,
-                "date-used": null
+                "date-used": ""
             }
         },
         "larry": {
@@ -33,7 +33,7 @@
             "nickname": "The Delicate Lunch Flower",
             "respin": {
                 "available": true,
-                "date-used": null
+                "date-used": ""
             }
         },
         "leah": {
@@ -42,7 +42,7 @@
             "nickname": "",
             "respin": {
                 "available": true,
-                "date-used": null
+                "date-used": ""
             }
         },
         "will": {
@@ -51,7 +51,7 @@
             "nickname": "",
             "respin": {
                 "available": true,
-                "date-used": null
+                "date-used": ""
             }
         }
     }
