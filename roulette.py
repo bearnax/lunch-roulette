@@ -15,7 +15,7 @@ def select_random_restaurant():
     for i in lunch_dict['locations']:
         if lunch_dict['locations'][i]['available'] == True and lunch_dict['locations'][i]['include'] == True:
             restaurant_list.append(i)
-    return numpy.random.choice(restaurant_list)
+    return numpy.random.choice(restaurant_list, replace=True)
 
 def respin_reset():
     '''if it's been more than six months since a participant used a respin, reset it'''
