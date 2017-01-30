@@ -43,8 +43,8 @@
             "name": "Olive Garden"
         }, 
         "r16": {
-            "available": true, 
-            "date-selected": "", 
+            "available": false, 
+            "date-selected": "2017-01-30", 
             "include": true, 
             "name": "Marlow's Tavern"
         }, 
