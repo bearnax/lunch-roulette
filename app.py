@@ -70,9 +70,9 @@ with open('lunch_locations.json', 'w') as json_data:
 
 
 
-"""
-        RUN THE CODE DOWN HERE.
-"""
+#============================================
+#           RUN THE CODE DOWN HERE.
+#============================================
 
 ''' CREATE GLOBAL VARIABLES & CREATE SOME THE PICKS '''
 first_pick = lunch_dict['locations'][select_random_restaurant()]['name']
