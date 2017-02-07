@@ -3,9 +3,9 @@ import json
 import datetime
 import numpy
 
-"""
-    DEFINE FUNCTIONS AND STUFF
-"""
+# ========================================
+#               DEFINE FUNCTIONS AND STUFF
+# ========================================
 
 ''' IMPORT DATA FROM JSON FILES'''
 with open('participants.json') as json_data:
