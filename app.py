@@ -1,7 +1,7 @@
 import time
 import json
 import datetime
-import numpy
+import random
 
 # ========================================
 #               DEFINE FUNCTIONS AND STUFF
@@ -21,7 +21,7 @@ def select_random_restaurant():
     for i in lunch_dict['locations']:
         if lunch_dict['locations'][i]['available'] == True and lunch_dict['locations'][i]['include'] == True:
             restaurant_list.append(i)
-    return numpy.random.choice(restaurant_list, replace=True)
+    return random.choice(restaurant_list)
 
 def respin_reset():
     '''if it's been more than six months since a participant used a respin, reset it'''
@@ -70,13 +70,13 @@ with open('lunch_locations.json', 'w') as json_data:
 
 
 
-#============================================
-#           RUN THE CODE DOWN HERE.
-#============================================
+"""
+        RUN THE CODE DOWN HERE.
+"""
 
 ''' CREATE GLOBAL VARIABLES & CREATE SOME THE PICKS '''
 first_pick = lunch_dict['locations'][select_random_restaurant()]['name']
-print first_pick
+print(first_pick)
 second_pick = ""
 
 
