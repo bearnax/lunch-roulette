@@ -3,9 +3,9 @@ import json
 import datetime
 import random
 
-# ========================================
-#               DEFINE FUNCTIONS AND STUFF
-# ========================================
+# ======================================================================
+#                                            DEFINE FUNCTIONS AND STUFF
+# ======================================================================
 
 ''' IMPORT DATA FROM JSON FILES'''
 with open('participants.json') as json_data:
@@ -24,7 +24,7 @@ def select_random_restaurant():
     return random.choice(restaurant_list)
 
 def respin_reset():
-    '''if it's been more than six months since a participant used a respin, reset it'''
+    """if it's been more than six months since a participant used a respin, reset it"""
 
     for i in participant_dict['people']:
         if participant_dict['people'][i]['respin']['available'] == False:
@@ -33,11 +33,11 @@ def respin_reset():
                 participant_dict['people'][i]['respin']['available'] = True
 
 def lunch_location_availability_reset():
-    '''if it's been more than six months since a lunch location was used, reset it'''
+    '''if it's been more than a year since a lunch location was used, reset it'''
 
     for i in lunch_dict['locations']:
         if lunch_dict['locations'][i]['available'] == False:
-            if (datetime.date.today() - datetime.datetime.strptime(lunch_dict['location'][i]['date-selected'], '%Y-%m-%d').date()).days > (364/2):
+            if (datetime.date.today() - datetime.datetime.strptime(lunch_dict['location'][i]['date-selected'], '%Y-%m-%d').date()).days > 365:
                 lunch_dict['locations'][i]['date-selected'] = ""
                 lunch_dict['locations'][i]['available'] = True
 
