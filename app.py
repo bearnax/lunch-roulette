@@ -44,6 +44,8 @@ def select_random_restaurant():
     return random.choice(restaurant_list)
 
 def json_update_lunch_location(pick):
+    '''for the restaurant selected, change it's availability to false and set the date of the lunch roulette that the user gave'''
+
     locations_to_save = load_json(lunch_json_filename)
     for i in locations_to_save:
         if i['name'] == pick:
@@ -102,6 +104,9 @@ def json_update_lunch_location(pick):
 
 def main():
     print("Welcome to Lunch Roulette. Let's get started.")
+
+    # get input, what's the date of your next lunch roulette? ask in 3 parts, month, day, year and validate the entry
+
     print("Your restaurant for today is...")
     first_pick = select_random_restaurant()
     print(first_pick)
