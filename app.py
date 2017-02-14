@@ -8,18 +8,16 @@ import random
 # ======================================================================
 
 ''' IMPORT DATA FROM JSON FILES'''
-with open('participants.json') as json_data:
-    participant_dict = json.load(json_data)
-
-with open('lunch_locations.json') as json_data:
-    lunch_dict = json.load(json_data)
+def load_json(filename):
+    with open(filename) as json_data:
+        return json.load(json_data)
 
 def select_random_restaurant():
     '''return a restaurant at random from the available list'''
 
     restaurant_list = []
-    for i in lunch_dict['locations']:
-        if lunch_dict['locations'][i]['available'] == True and lunch_dict['locations'][i]['include'] == True:
+    for i in lunch_locations['locations']:
+        if lunch_dict['available'] == True and lunch_dict['include'] == True:
             restaurant_list.append(i)
     return random.choice(restaurant_list)
 
@@ -69,16 +67,17 @@ with open('lunch_locations.json', 'w') as json_data:
 
 
 
+# ======================================================================
+#                                                               RUN CODE
+# ======================================================================
 
-"""
-        RUN THE CODE DOWN HERE.
-"""
+def main():
+    participants = load_json("participants.json")
+    lunch_spots = load_json("lunch_spots.json")
 
-''' CREATE GLOBAL VARIABLES & CREATE SOME THE PICKS '''
-first_pick = lunch_dict['locations'][select_random_restaurant()]['name']
-print(first_pick)
-second_pick = ""
-
+if __name__ == '__main__':
+    status = main()
+    sys.exit(status)
 
 #
 # def ask_for_respin():
