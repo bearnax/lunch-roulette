@@ -2,68 +2,97 @@ import time
 import json
 import datetime
 import random
+import sys
+
+# ======================================================================
+#                                                      DEFINE CONSTANTS
+# ======================================================================
+
+lunch_json_filename = "lunch_locations_test.json"
+team_json_filename = "participants.json"
 
 # ======================================================================
 #                                            DEFINE FUNCTIONS AND STUFF
 # ======================================================================
+
+# define your ridiculous slow printing function
+def delay_print(s):
+    for c in s:
+        sys.stdout.write(c)
+        sys.stdout.flush()
+        time.sleep(0.05)
+    print("\n")
+    time.sleep(0.5)
 
 ''' IMPORT DATA FROM JSON FILES'''
 def load_json(filename):
     with open(filename) as json_data:
         return json.load(json_data)
 
+def dump_json(filename, data_to_export):
+    with open(filename, 'w') as json_data:
+        json.dump(data_to_export, json_data, sort_keys=True, indent=4)
+
 def select_random_restaurant():
     '''return a restaurant at random from the available list'''
 
+    locations_for_selecting = load_json(lunch_json_filename)
     restaurant_list = []
-    for i in lunch_locations['locations']:
-        if lunch_dict['available'] == True and lunch_dict['include'] == True:
-            restaurant_list.append(i)
+    for i in locations_for_selecting:
+        if i['available'] == True and i['include'] == True:
+            restaurant_list.append(i['name'])
     return random.choice(restaurant_list)
 
-def respin_reset():
-    """if it's been more than six months since a participant used a respin, reset it"""
+def json_update_lunch_location(pick):
+    locations_to_save = load_json(lunch_json_filename)
+    for i in locations_to_save:
+        if i['name'] == pick:
+            i['available'] = False
+    dump_json(lunch_json_filename, locations_to_save)
 
-    for i in participant_dict['people']:
-        if participant_dict['people'][i]['respin']['available'] == False:
-            if (datetime.date.today() - datetime.datetime.strptime(participant_dict['people'][i]['respin']['date-used'], '%Y-%m-%d').date()).days > (364/2):
-                participant_dict['people'][i]['respin']['date-used'] = ""
-                participant_dict['people'][i]['respin']['available'] = True
-
-def lunch_location_availability_reset():
-    '''if it's been more than a year since a lunch location was used, reset it'''
-
-    for i in lunch_dict['locations']:
-        if lunch_dict['locations'][i]['available'] == False:
-            if (datetime.date.today() - datetime.datetime.strptime(lunch_dict['location'][i]['date-selected'], '%Y-%m-%d').date()).days > 365:
-                lunch_dict['locations'][i]['date-selected'] = ""
-                lunch_dict['locations'][i]['available'] = True
-
-def set_restaurant_status():
-    '''when a restaurant is selected, set it's availability to false and set the date selected to the day it ran.'''
-
-    if len(second_pick) > 0:
-        for i in lunch_dict['locations']:
-            if lunch_dict['locations'][i]['name'] == second_pick:
-                lunch_dict['locations'][i]['date-selected'] = str(datetime.date.today())
-                lunch_dict['locations'][i]['available'] = False
-
-    elif len(first_pick) > 0:
-        for i in lunch_dict['locations']:
-            if lunch_dict['locations'][i]['name'] == first_pick:
-                lunch_dict['locations'][i]['date-selected'] = str(datetime.date.today())
-                lunch_dict['locations'][i]['available'] = False
+# def respin_reset():
+#     """if it's been more than six months since a participant used a respin, reset it"""
+#
+#     for i in participant_dict['people']:
+#         if participant_dict['people'][i]['respin']['available'] == False:
+#             if (datetime.date.today() - datetime.datetime.strptime(participant_dict['people'][i]['respin']['date-used'], '%Y-%m-%d').date()).days > (364/2):
+#                 participant_dict['people'][i]['respin']['date-used'] = ""
+#                 participant_dict['people'][i]['respin']['available'] = True
+#
+# def lunch_location_availability_reset():
+#     '''if it's been more than a year since a lunch location was used, reset it'''
+#
+#     for i in lunch_dict['locations']:
+#         if lunch_dict['locations'][i]['available'] == False:
+#             if (datetime.date.today() - datetime.datetime.strptime(lunch_dict['location'][i]['date-selected'], '%Y-%m-%d').date()).days > 365:
+#                 lunch_dict['locations'][i]['date-selected'] = ""
+#                 lunch_dict['locations'][i]['available'] = True
+#
+# def set_restaurant_status():
+#     '''when a restaurant is selected, set it's availability to false and set the date selected to the day it ran.'''
+#
+#     if len(second_pick) > 0:
+#         for i in lunch_dict['locations']:
+#             if lunch_dict['locations'][i]['name'] == second_pick:
+#                 lunch_dict['locations'][i]['date-selected'] = str(datetime.date.today())
+#                 lunch_dict['locations'][i]['available'] = False
+#
+#     elif len(first_pick) > 0:
+#         for i in lunch_dict['locations']:
+#             if lunch_dict['locations'][i]['name'] == first_pick:
+#                 lunch_dict['locations'][i]['date-selected'] = str(datetime.date.today())
+#                 lunch_dict['locations'][i]['available'] = False
 
 
 
 
 '''EXPORT FINISHED DATA TO JSON'''
 
-with open('participants.json', 'w') as json_data:
-    json.dump(participant_dict, json_data, sort_keys=True, indent=4)
-
-with open('lunch_locations.json', 'w') as json_data:
-    json.dump(lunch_dict, json_data, sort_keys=True, indent=4)
+# with open('participants.json', 'w') as json_data:
+#     json.dump(participant_dict, json_data, sort_keys=True, indent=4)
+#
+# with open('lunch_locations.json', 'w') as json_data:
+#     json.dump(lunch_dict, json_data, sort_keys=True, indent=4)
 
 
 
@@ -72,8 +101,11 @@ with open('lunch_locations.json', 'w') as json_data:
 # ======================================================================
 
 def main():
-    participants = load_json("participants.json")
-    lunch_spots = load_json("lunch_spots.json")
+    print("Welcome to Lunch Roulette. Let's get started.")
+    print("Your restaurant for today is...")
+    first_pick = select_random_restaurant()
+    print(first_pick)
+    json_update_lunch_location(first_pick)
 
 if __name__ == '__main__':
     status = main()
