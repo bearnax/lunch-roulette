@@ -1,19 +1,19 @@
 [
     {
-        "available": false,
-        "date-selected": "",
+        "available": true,
+        "date-used": "",
         "include": true,
         "name": "H Mart"
     },
     {
-        "available": false,
-        "date-selected": "",
+        "available": true,
+        "date-used": "",
         "include": true,
         "name": "Cho Dang Tofu House (Korean BBQ)"
     },
     {
         "available": false,
-        "date-selected": "",
+        "date-used": "2017-01-28",
         "include": true,
         "name": "Flying Biscuit"
     }

@@ -9,20 +9,11 @@ import sys
 # ======================================================================
 
 lunch_json_filename = "lunch_locations_test.json"
-team_json_filename = "participants.json"
+team_json_filename = "participants_test.json"
 
 # ======================================================================
 #                                            DEFINE FUNCTIONS AND STUFF
 # ======================================================================
-
-# define your ridiculous slow printing function
-def delay_print(s):
-    for c in s:
-        sys.stdout.write(c)
-        sys.stdout.flush()
-        time.sleep(0.05)
-    print("\n")
-    time.sleep(0.5)
 
 ''' IMPORT DATA FROM JSON FILES'''
 def load_json(filename):
@@ -50,43 +41,64 @@ def json_update_lunch_location(pick):
     for i in locations_to_save:
         if i['name'] == pick:
             i['available'] = False
+            i['date-used'] = str(datetime.date.today())
     dump_json(lunch_json_filename, locations_to_save)
 
-# def respin_reset():
-#     """if it's been more than six months since a participant used a respin, reset it"""
-#
-#     for i in participant_dict['people']:
-#         if participant_dict['people'][i]['respin']['available'] == False:
-#             if (datetime.date.today() - datetime.datetime.strptime(participant_dict['people'][i]['respin']['date-used'], '%Y-%m-%d').date()).days > (364/2):
-#                 participant_dict['people'][i]['respin']['date-used'] = ""
-#                 participant_dict['people'][i]['respin']['available'] = True
-#
-# def lunch_location_availability_reset():
-#     '''if it's been more than a year since a lunch location was used, reset it'''
-#
-#     for i in lunch_dict['locations']:
-#         if lunch_dict['locations'][i]['available'] == False:
-#             if (datetime.date.today() - datetime.datetime.strptime(lunch_dict['location'][i]['date-selected'], '%Y-%m-%d').date()).days > 365:
-#                 lunch_dict['locations'][i]['date-selected'] = ""
-#                 lunch_dict['locations'][i]['available'] = True
-#
-# def set_restaurant_status():
-#     '''when a restaurant is selected, set it's availability to false and set the date selected to the day it ran.'''
-#
-#     if len(second_pick) > 0:
-#         for i in lunch_dict['locations']:
-#             if lunch_dict['locations'][i]['name'] == second_pick:
-#                 lunch_dict['locations'][i]['date-selected'] = str(datetime.date.today())
-#                 lunch_dict['locations'][i]['available'] = False
-#
-#     elif len(first_pick) > 0:
-#         for i in lunch_dict['locations']:
-#             if lunch_dict['locations'][i]['name'] == first_pick:
-#                 lunch_dict['locations'][i]['date-selected'] = str(datetime.date.today())
-#                 lunch_dict['locations'][i]['available'] = False
+#COMMAND LINE FUNCTIONS AND CONTROLS
 
+# define your ridiculous slow printing function
+def delay_print(s):
+    for c in s:
+        sys.stdout.write(c)
+        sys.stdout.flush()
+        time.sleep(0.05)
+    print("\n")
+    time.sleep(0.5)
 
+def availability_reset(key):
+    key['date-used'] = ""
+    key['available'] = True
 
+def selective_reset(filename, data, time):
+    count = 0
+    for i in data:
+        if i['available'] == False:
+            if (datetime.date.today() - datetime.datetime.strptime(i['date-used'], '%Y-%m-%d').date()).days > time:
+                availability_reset(i)
+                count += 1
+    dump_json(filename, data)
+    print("Selective Reset Complete. {} Reset.".format(count))
+
+def full_reset(filename, data, time):
+    are_you_sure = input("Are you sure you want to reset all lunch locations? [YES/NO]\n> ")
+    count = 0
+    if are_you_sure == "YES":
+        for i in data:
+            availability_reset(i)
+        dump_json(filename, data)
+        print("Full Reset Complete. {} Reset.".format(count))
+    else:
+        print("You answered No. I won't make any changes then.")
+
+def reset(lunch_or_spin, all_or_selective):
+    json_filename = ""
+    reset_data = None
+    time_period = 0
+    if lunch_or_spin == "lunch":
+        json_filename = lunch_json_filename
+        reset_data = load_json(lunch_json_filename)
+        time_period = 365
+    elif lunch_or_spin == "spin":
+        json_filename = team_json_filename
+        reset_data = load_json(team_json_filename)
+        time_period = 364 / 2
+    else:
+        print("Error: unable to determine reset type")
+        pass
+    if all_or_selective == "selective":
+        selective_reset(json_filename, reset_data, time_period)
+    elif all_or_selective == "all":
+        full_reset(json_filename, reset_data, time_period)
 
 '''EXPORT FINISHED DATA TO JSON'''
 
@@ -107,10 +119,11 @@ def main():
 
     # get input, what's the date of your next lunch roulette? ask in 3 parts, month, day, year and validate the entry
 
-    print("Your restaurant for today is...")
-    first_pick = select_random_restaurant()
-    print(first_pick)
-    json_update_lunch_location(first_pick)
+    # print("Your restaurant for today is...")
+    # first_pick = select_random_restaurant()
+    # print(first_pick)
+    # json_update_lunch_location(first_pick)
+    reset("lunch", "selective")
 
 if __name__ == '__main__':
     status = main()
