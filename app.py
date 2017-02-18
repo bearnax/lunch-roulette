@@ -148,11 +148,13 @@ class Data(object):
                 i['date-used']
             ))
 
+
     def selective_reset(self, category):
         """
         category = self.filtered_lunch_spots or self.users
         """
 
+        self.filter_lunch_spots = []
         count = 0
         for i in category:
             if i.available == False:
@@ -160,6 +162,7 @@ class Data(object):
                     i.reset()
                     count += 1
         print("Selective Reset Complete. {} Reset.".format(count))
+        self.filter_lunch_spots()
 
     def full_reset(self, category):
         """ reset all availability and dates for either users or lunch set_lunch_spots
@@ -170,9 +173,12 @@ class Data(object):
         are_you_sure = input("Are you sure you want to reset all lunch locations? [YES/NO]\n> ")
         count = 0
         if are_you_sure == "YES":
+            self.filtered_lunch_spots = []
             for i in category:
                 i.reset()
+                count += 1
             print("Full Reset Complete. {} Reset.".format(count))
+            self.filter_lunch_spots()
         else:
             print("You answered No. I won't make any changes then.")
 
@@ -188,6 +194,10 @@ def main():
     print("Welcome to Lunch Roulette. Let's get started.")
 
     session_data = inititalize_data()
+    print(len(session_data.filtered_lunch_spots))
+    session_data.full_reset(session_data.lunch_spots)
+    session_data.filter_lunch_spots()
+    print(len(session_data.filtered_lunch_spots))
 
     q = input("Would you like to make a pick?[Yes/No]\n> ")
     if q.upper() == "YES":
