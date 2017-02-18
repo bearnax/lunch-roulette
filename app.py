@@ -24,16 +24,6 @@ def dump_json(filename, data_to_export):
     with open(filename, 'w') as json_data:
         json.dump(data_to_export, json_data, sort_keys=True, indent=4)
 
-def select_random_restaurant():
-    '''return a restaurant at random from the available list'''
-
-    locations_for_selecting = load_json(lunch_data_filename)
-    restaurant_list = []
-    for i in locations_for_selecting:
-        if i['available'] == True and i['include'] == True:
-            restaurant_list.append(i['name'])
-    return random.choice(restaurant_list)
-
 def json_update_lunch_location(pick):
     '''for the restaurant selected, change it's availability to false and set the date of the lunch roulette that the user gave'''
 
@@ -69,6 +59,23 @@ def inititalize_data():
     temp.filter_lunch_spots()
     temp.set_users()
     return temp
+
+def run_app():
+    delay_print("Welcome to Lunch Roulette.")
+    delay_print("For those about to eat, we salute you!")
+    session_data = inititalize_data()
+
+    delay_print("Would you like to make a pick?[Yes/No]?")
+    q = input("> ")
+    if q.upper() == "YES":
+        delay_print("Excellent choice.")
+        session_data.make_a_pick()
+        delay_print("Here's your choice!")
+        delay_print(session_data.pick.name)
+    else:
+        pass
+
+    pass
 
 # ======================================================================
 #                                                         DEFINE CLASSES
@@ -177,6 +184,7 @@ class Data(object):
 # ======================================================================
 
 def main():
+    # run_app()
     print("Welcome to Lunch Roulette. Let's get started.")
 
     session_data = inititalize_data()
