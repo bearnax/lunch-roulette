@@ -54,9 +54,8 @@ def delay_print(s):
 #     json.dump(lunch_dict, json_data, sort_keys=True, indent=4)
 
 def inititalize_data():
-    temp = Data()
+    temp = Data() # create the data object for this instance
     temp.set_lunch_spots()
-    temp.filter_lunch_spots()
     temp.set_users()
     return temp
 
@@ -69,6 +68,9 @@ def run_app():
     q = input("> ")
     if q.upper() == "YES":
         delay_print("Excellent choice.")
+        eligible_options_for_printing = "There are {} restaurants that qualify.".format(session_data.count_eligible_restaurants())
+        delay_print(eligible_options_for_printing)
+        delay_print("But, there can be oNLY ONE!!!!")
         session_data.make_a_pick()
         delay_print("Here's your choice!")
         delay_print(session_data.pick.name)
@@ -110,7 +112,6 @@ class User(object):
 class Data(object):
     def __init__(self):
         self.lunch_spots = []
-        self.filtered_lunch_spots = []
         self.users = []
         self.pick = None
 
@@ -123,19 +124,6 @@ class Data(object):
                 i['date-used'],
                 i['include']
             ))
-
-    def filter_lunch_spots(self):
-        if len(self.lunch_spots) > 0:
-            for i in self.lunch_spots:
-                if i.include == True and i.available == True:
-                    self.filtered_lunch_spots.append(i)
-        else:
-            print("No locations available, attempting to import")
-            try:
-                self.set_lunch_spots()
-            except:
-                print("Unable to import")
-                pass
 
     def set_users(self):
         user_data = load_json(user_data_filename)
@@ -151,10 +139,9 @@ class Data(object):
 
     def selective_reset(self, category):
         """
-        category = self.filtered_lunch_spots or self.users
+        param: category (self.lunch_spots or self.users)
         """
 
-        self.filter_lunch_spots = []
         count = 0
         for i in category:
             if i.available == False:
@@ -162,50 +149,58 @@ class Data(object):
                     i.reset()
                     count += 1
         print("Selective Reset Complete. {} Reset.".format(count))
-        self.filter_lunch_spots()
 
     def full_reset(self, category):
         """ reset all availability and dates for either users or lunch set_lunch_spots
 
-        param: category = self.filtered_lunch_spots or self.users
+        param: category = self.lunch_spots or self.users
         """
 
         are_you_sure = input("Are you sure you want to reset all lunch locations? [YES/NO]\n> ")
         count = 0
-        if are_you_sure == "YES":
-            self.filtered_lunch_spots = []
+        if are_you_sure.upper() == "YES":
             for i in category:
                 i.reset()
                 count += 1
             print("Full Reset Complete. {} Reset.".format(count))
-            self.filter_lunch_spots()
         else:
             print("You answered No. I won't make any changes then.")
 
+    def count_eligible_restaurants(self):
+        eligible_list = []
+        for i in self.lunch_spots:
+            if i.include == True and i.available == True:
+                eligible_list.append(i)
+        return len(eligible_list)
+
     def make_a_pick(self):
-        self.pick = random.choice(self.filtered_lunch_spots)
+        filtered_list = []
+        for i in self.lunch_spots:
+            if i.include == True and i.available == True:
+                filtered_list.append(i)
+        self.pick = random.choice(filtered_list)
 
 # ======================================================================
 #                                                               RUN CODE
 # ======================================================================
 
 def main():
-    # run_app()
-    print("Welcome to Lunch Roulette. Let's get started.")
-
-    session_data = inititalize_data()
-    print(len(session_data.filtered_lunch_spots))
-    session_data.full_reset(session_data.lunch_spots)
-    session_data.filter_lunch_spots()
-    print(len(session_data.filtered_lunch_spots))
-
-    q = input("Would you like to make a pick?[Yes/No]\n> ")
-    if q.upper() == "YES":
-        print("Excellent choice.")
-        session_data.make_a_pick()
-        print(session_data.pick.name)
-    else:
-        pass
+    run_app()
+    # print("Welcome to Lunch Roulette. Let's get started.")
+    #
+    # session_data = inititalize_data()
+    # session_data.count_eligible_restaurants()
+    #
+    # session_data.full_reset(session_data.lunch_spots)
+    # session_data.count_eligible_restaurants()
+    #
+    # q = input("Would you like to make a pick?[Yes/No]\n> ")
+    # if q.upper() == "YES":
+    #     print("Excellent choice.")
+    #     session_data.make_a_pick()
+    #     print(session_data.pick.name)
+    # else:
+    #     pass
 
 if __name__ == '__main__':
     status = main()
