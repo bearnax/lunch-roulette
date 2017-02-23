@@ -8,7 +8,7 @@ import sys
 #                                                      DEFINE CONSTANTS
 # ======================================================================
 
-lunch_data_filename = "lunch_locations_test.json"
+lunch_data_filename = "lunch_spots.json"
 user_data_filename = "participants_test.json"
 
 # ======================================================================
@@ -62,21 +62,37 @@ def inititalize_data():
 def run_app():
     delay_print("Welcome to Lunch Roulette.")
     delay_print("For those about to eat, we salute you!")
+
     session_data = inititalize_data()
 
-    delay_print("Would you like to make a pick?[Yes/No]?")
+    eligible_options_for_printing = "There are {} restaurants that qualify.".format(session_data.count_eligible_restaurants())
+    delay_print(eligible_options_for_printing)
+
+    delay_print("But... there can be oNLY ONE!!!!")
+
+    session_data.make_a_pick()
+    delay_print("And your restaurant this month is...!")
+    delay_print(session_data.pick.name)
+
+    # would you like to respin?
+    delay_print("Good choice right?")
+    delay_print("I supposed I could give it another go if you like.")
+    delay_print("Want me to pick again? [Yes/No]")
+
     q = input("> ")
     if q.upper() == "YES":
-        delay_print("Excellent choice.")
-        eligible_options_for_printing = "There are {} restaurants that qualify.".format(session_data.count_eligible_restaurants())
-        delay_print(eligible_options_for_printing)
-        delay_print("But, there can be oNLY ONE!!!!")
+        delay_print("Very well.")
+        delay_print("LET'S DO THIS!")
         session_data.make_a_pick()
-        delay_print("Here's your choice!")
+        delay_print("Please enjoy.....")
         delay_print(session_data.pick.name)
+        delay_print("I hope you feel good about your life choices that landed you here.")
+    elif q.upper() == "NO":
+        delay_print("Fair enough.")
+        response_for_no_respin = "I hope you enjoy your visit to {} then.".format(session_data.pick.name)
+        delay_print(response_for_no_respin)
     else:
-        pass
-
+        delay_print("Learn how to type. We're done here.")
     pass
 
 # ======================================================================
@@ -151,7 +167,8 @@ class Data(object):
         print("Selective Reset Complete. {} Reset.".format(count))
 
     def full_reset(self, category):
-        """ reset all availability and dates for either users or lunch set_lunch_spots
+        """
+        reset all availability and dates for either users or lunch set_lunch_spots
 
         param: category = self.lunch_spots or self.users
         """
