@@ -149,5 +149,10 @@
         "date-selected": "",
         "include": true,
         "name": "Desta"
+    },{
+        "available": true,
+        "date-selected": "",
+        "include": true,
+        "name": "Mall Food Court"
     }
 ]
