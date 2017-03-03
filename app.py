@@ -8,7 +8,7 @@ import sys
 #                                                      DEFINE CONSTANTS
 # ======================================================================
 
-lunch_data_filename = "lunch_spots.json"
+lunch_data_filename = "lunch_spots_test.json"
 user_data_filename = "participants_test.json"
 
 # ======================================================================
