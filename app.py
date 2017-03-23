@@ -111,7 +111,7 @@ def load_lunch_spots():
 Users = namedtuple("Users", [
     "first_name",
     "last_name",
-    "nickname",
+    "nickname"
 ])
 
 def load_users():
@@ -123,7 +123,7 @@ def load_users():
             i["last-name"],
             i["nickname"]
         ))
-    return user_data
+    return temp_user_list
 
 PreviousResults = namedtuple("PreviousResults", [
     "lunch_date",
@@ -140,9 +140,23 @@ def load_results():
             i["location_id"],
             i["user_respin_id"]
         ))
+    return temp_results_list
 
 def pick_a_spot():
+    # make a pick
     lunch_spots = load_lunch_spots()
+    results = load_results()
+    for result in results:
+        for location in lunch_spots:
+            if result.location_id == location.location_id and (
+            # TODO: remove locations that were used within a year
+            datetime.date.today()
+            - datetime.datetime.strptime(
+                result.lunch_date,
+                '%Y-%m-%d'
+            ).date()).days > 364:
+                lunch_spots.remove(location)
+    print(lunch_spots)
     return random.choice(lunch_spots)
 
 # ============================================================================
@@ -153,10 +167,9 @@ def main():
     lunch_pick = pick_a_spot()
     users = load_users()
     results = load_results()
-
-    print(users)
+    #
+    # print("USERS")
     # for i in users:
-    #     print("USERS")
     #     print("{} {}".format(i.first_name, i.last_name))
 
     print("{}".format(lunch_pick.name))

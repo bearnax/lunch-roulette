@@ -2,38 +2,26 @@
     {
         "first-name": "Amy",
         "last-name": "Mason",
-        "nickname": "",
-        "available": true,
-        "date-used":""
+        "nickname": ""
     },{
         "first-name": "Braden",
         "last-name": "Turner",
-        "nickname": "The Aussie",
-        "available": true,
-        "date-used":""
+        "nickname": "The Aussie"
     },{
         "first-name": "Brian",
         "last-name": "Cooper",
-        "nickname": "The Bug Squasher",
-        "available": true,
-        "date-used":""
+        "nickname": "The Bug Squasher"
     },{
         "first-name": "Larry",
         "last-name": "Ball",
-        "nickname": "The Delicate Lunch Flower",
-        "available": true,
-        "date-used":""
+        "nickname": "The Delicate Lunch Flower"
     },{
         "first-name": "Leah",
         "last-name": "Wilson",
-        "nickname": "",
-        "available": true,
-        "date-used":""
+        "nickname": ""
     },{
         "first-name": "Will",
         "last-name": "Brodnax",
-        "nickname": "",
-        "available": true,
-        "date-used":""
+        "nickname": ""
     }
 ]
