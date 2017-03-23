@@ -1,9 +1,11 @@
 [
     {
-        "date": "2017-01-24",
+        "lunch_date": "2017-01-24",
         "location_id": "321654987",
+        "user_respin_id": "None"
     },{
-        "date": "2017-03-23",
+        "lunch_date": "2017-03-23",
         "location_id": "354899765",
+        "user_respin_id": "None"
     }
 ]
