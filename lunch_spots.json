@@ -2,12 +2,12 @@
     {
         "available": true,
         "date-used": "",
-        "include": true,
+        "include": false,
         "name": "H Mart"
     },{
         "available": true,
         "date-used": "",
-        "include": true,
+        "include": false,
         "name": "Cho Dang Tofu House (Korean BBQ)"
     },{
         "available": true,
@@ -57,7 +57,7 @@
     },{
         "available": true,
         "date-used": "",
-        "include": true,
+        "include": false,
         "name": "El Ray del Taco"
     },{
         "available": true,
@@ -87,12 +87,12 @@
     },{
         "available": true,
         "date-used": "",
-        "include": true,
+        "include": false,
         "name": "Teela Taqueria"
     },{
         "available": true,
         "date-used": "",
-        "include": true,
+        "include": false,
         "name": "Royal China (Dim Sum)"
     },{
         "available": true,
@@ -102,17 +102,17 @@
     },{
         "available": true,
         "date-used": "",
-        "include": true,
+        "include": false,
         "name": "J's Mini HotPot Deluxe"
     },{
         "available": true,
         "date-used": "",
-        "include": true,
+        "include": false,
         "name": "Nori Nori"
     },{
         "available": true,
         "date-used": "",
-        "include": true,
+        "include": false,
         "name": "Chinese Cultural Center"
     },{
         "available": true,
@@ -127,12 +127,12 @@
     },{
         "available": true,
         "date-used": "",
-        "include": true,
+        "include": false,
         "name": "Heirloom BBQ"
     },{
         "available": true,
         "date-used": "",
-        "include": true,
+        "include": false,
         "name": "Lee's Bakery"
     },{
         "available": true,
@@ -147,7 +147,7 @@
     },{
         "available": true,
         "date-used": "",
-        "include": true,
+        "include": false,
         "name": "Desta"
     },{
         "available": true,

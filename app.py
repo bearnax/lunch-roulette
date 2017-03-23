@@ -4,12 +4,15 @@ import datetime
 import random
 import sys
 
+# TODO: break the program into sections: load/Save, Picking Spots, Manipulating the set/reset for results
+
 # ======================================================================
 #                                                      DEFINE CONSTANTS
 # ======================================================================
 
 lunch_data_filename = "lunch_spots.json"
 user_data_filename = "participants_test.json"
+results_data_filename = "results_test.json"
 # TODO: add a third file location to store individual 'runs' of roulette
 
 
@@ -62,7 +65,7 @@ def run_app():
     eligible_options_for_printing = "There are {} restaurants that qualify.".format(session_data.count_eligible_restaurants())
     delay_print(eligible_options_for_printing)
 
-    delay_print("But... there can be oNLY ONE!!!!")
+    delay_print("But... there can be ONLY ONE!!!!")
 
     session_data.make_a_pick()
     delay_print("And your restaurant this month is...!")
