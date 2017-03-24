@@ -1,0 +1,22 @@
+[
+    {
+        "location_id": "468597785",
+        "include": true,
+        "name": "H Mart"
+    },
+    {
+        "location_id": "035249875",
+        "include": true,
+        "name": "Cho Dang Tofu House (Korean BBQ)"
+    },
+    {
+        "location_id": "321654987",
+        "include": true,
+        "name": "ShakeShack"
+    },
+    {
+        "location_id": "354899765",
+        "include": true,
+        "name": "Brass Tap"
+    }
+]
