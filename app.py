@@ -145,18 +145,18 @@ def load_results():
 def pick_a_spot():
     # make a pick
     lunch_spots = load_lunch_spots()
-    results = load_results()
-    for result in results:
-        for location in lunch_spots:
-            if result.location_id == location.location_id and (
-            # TODO: remove locations that were used within a year
-            datetime.date.today()
-            - datetime.datetime.strptime(
-                result.lunch_date,
-                '%Y-%m-%d'
-            ).date()).days > 364:
-                lunch_spots.remove(location)
-    print(lunch_spots)
+    # results = load_results()
+    # for result in results:
+    #     for location in lunch_spots:
+    #         if result.location_id == location.location_id and (
+    #         # TODO: remove locations that were used within a year
+    #         datetime.date.today()
+    #         - datetime.datetime.strptime(
+    #             result.lunch_date,
+    #             '%Y-%m-%d'
+    #         ).date()).days > 364:
+    #             lunch_spots.remove(location)
+    # print(lunch_spots)
     return random.choice(lunch_spots)
 
 # ============================================================================
@@ -164,15 +164,19 @@ def pick_a_spot():
 # ============================================================================
 
 def main():
+    start_time = time.time()
+
     lunch_pick = pick_a_spot()
-    users = load_users()
-    results = load_results()
+    # users = load_users()
+    # results = load_results()
     #
     # print("USERS")
     # for i in users:
     #     print("{} {}".format(i.first_name, i.last_name))
 
     print("{}".format(lunch_pick.name))
+
+    print("{}".format(time.time() - start_time))
 
 if __name__ == '__main__':
     status = main()
