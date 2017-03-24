@@ -1,11 +1,9 @@
 import time
 import json
-import datetime
+from datetime import datetime
 import random
 import sys
 from collections import namedtuple
-
-# TODO: break the program into sections: load/Save, Picking Spots, Manipulating the set/reset for results
 
 # ======================================================================
 #                                                      DEFINE CONSTANTS
@@ -15,6 +13,12 @@ lunch_data_filename = "lunch_spots_test.json"
 user_data_filename = "participants_test.json"
 results_data_filename = "results_test.json"
 # TODO: add a third file location to store individual 'runs' of roulette
+
+
+
+
+
+
 
 
 # ======================================================================
@@ -29,16 +33,6 @@ def load_json(filename):
 def dump_json(filename, data_to_export):
     with open(filename, 'w') as json_data:
         json.dump(data_to_export, json_data, sort_keys=True, indent=4)
-
-# def json_update_lunch_location(pick):
-#     '''for the restaurant selected, change it's availability to false and set the date of the lunch roulette that the user gave'''
-#
-#     locations_to_save = load_json(lunch_data_filename)
-#     for i in locations_to_save:
-#         if i['name'] == pick:
-#             i['available'] = False
-#             i['date-used'] = str(datetime.date.today())
-#     dump_json(lunch_data_filename, locations_to_save)
 
 #COMMAND LINE FUNCTIONS AND CONTROLS
 
@@ -86,6 +80,12 @@ def delay_print(s):
 #     else:
 #         delay_print("Learn how to type. We're done here.")
 #     pass
+
+
+
+
+
+
 
 # ======================================================================
 #                                                              LOAD DATA
@@ -136,47 +136,60 @@ def load_results():
     results_data = load_json(results_data_filename)
     for i in results_data:
         temp_results_list.append(PreviousResults(
-            i["lunch_date"],
+            datetime.strptime(i["lunch_date"], "%Y-%m-%d"),
             i["location_id"],
             i["user_respin_id"]
         ))
     return temp_results_list
 
+def remove_recent_locations(list_of_locations, days):
+    """ Remove locations from the main list of restaurants
+    that were used within a certain number of days
+
+    params:
+        list_of_locations = a list of LunchSpots namedtuples
+                            the function load_lunch_spots()
+        days = an integer, how many days since a restaurant was last used
+                           and can be used again.
+
+    """
+    temp_list = list_of_locations
+    results = load_results()
+
+    for result in results:
+        for location in temp_list:
+            if location.location_id == result.location_id:
+                if (datetime.today() - result.lunch_date).days < days:
+                    temp_list.remove(location)
+                else:
+                    pass
+            else:
+                pass
+
+    return temp_list
+
 def pick_a_spot():
-    # make a pick
-    lunch_spots = load_lunch_spots()
-    # results = load_results()
-    # for result in results:
-    #     for location in lunch_spots:
-    #         if result.location_id == location.location_id and (
-    #         # TODO: remove locations that were used within a year
-    #         datetime.date.today()
-    #         - datetime.datetime.strptime(
-    #             result.lunch_date,
-    #             '%Y-%m-%d'
-    #         ).date()).days > 364:
-    #             lunch_spots.remove(location)
-    # print(lunch_spots)
-    return random.choice(lunch_spots)
+    """make a pick for lunch
+
+    """
+    filtered_list = remove_recent_locations(load_lunch_spots(), 364)
+
+    return random.choice(filtered_list)
+
+
+
+
+
+
 
 # ============================================================================
 #                                                                     RUN CODE
 # ============================================================================
 
 def main():
-    start_time = time.time()
-
     lunch_pick = pick_a_spot()
-    # users = load_users()
-    # results = load_results()
-    #
-    # print("USERS")
-    # for i in users:
-    #     print("{} {}".format(i.first_name, i.last_name))
 
     print("{}".format(lunch_pick.name))
-
-    print("{}".format(time.time() - start_time))
 
 if __name__ == '__main__':
     status = main()
