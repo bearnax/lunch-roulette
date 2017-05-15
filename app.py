@@ -12,8 +12,6 @@ from collections import namedtuple
 lunch_data_filename = "data/lunch_spots_test.json"
 user_data_filename = "data/participants_test.json"
 results_data_filename = "data/results_test.json"
-# TODO: add a third file location to store individual 'runs' of roulette
-
 
 
 
