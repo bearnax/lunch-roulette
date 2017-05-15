@@ -3,9 +3,9 @@ import time
 from app import pick_a_spot
 
 # define your ridiculous slow printing function
-def delay_print(s):
-    for c in s:
-        sys.stdout.write(c)
+def delay_print(string):
+    for char in string:
+        sys.stdout.write(char)
         sys.stdout.flush()
         time.sleep(0.03)
     print("\n")
