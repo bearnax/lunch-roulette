@@ -2,26 +2,32 @@
     {
         "first-name": "Amy",
         "last-name": "Mason",
-        "nickname": ""
+        "nickname": "",
+        "user_id": "A00001"
     },{
         "first-name": "Braden",
         "last-name": "Turner",
-        "nickname": "The Aussie"
+        "nickname": "The Aussie",
+        "user_id": "A00002"
     },{
         "first-name": "Brian",
         "last-name": "Cooper",
-        "nickname": "The Bug Squasher"
+        "nickname": "The Bug Squasher",
+        "user_id": "A00003"
     },{
         "first-name": "Larry",
         "last-name": "Ball",
-        "nickname": "The Delicate Lunch Flower"
+        "nickname": "The Delicate Lunch Flower",
+        "user_id": "A00004"
     },{
         "first-name": "Leah",
         "last-name": "Wilson",
-        "nickname": ""
+        "nickname": "",
+        "user_id": "A00005"
     },{
         "first-name": "Will",
         "last-name": "Brodnax",
-        "nickname": ""
+        "nickname": "",
+        "user_id": "A00006"
     }
 ]

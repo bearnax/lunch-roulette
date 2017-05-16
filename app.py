@@ -2,6 +2,7 @@ import json
 from datetime import datetime
 import random
 from collections import namedtuple
+from uuid import uuid4
 
 # ======================================================================
 #                                                      DEFINE CONSTANTS
@@ -50,10 +51,20 @@ def load_lunch_spots(lunch_data_location):
         ))
     return temp_lunch_list
 
+def add_location(location_name, location_list):
+    new_location = LunchSpot(location_name, uuid4().hex, True)
+    location_list.append(new_location)
+
+def remove_location(location_id, location_list):
+    for location in location_list:
+        if location.location_id == location_id:
+            location_list.remove(location)
+
 Users = namedtuple("Users", [
     "first_name",
     "last_name",
-    "nickname"
+    "nickname",
+    "user_id"
 ])
 
 def load_users():
@@ -63,9 +74,19 @@ def load_users():
         temp_user_list.append(Users(
             i["first-name"],
             i["last-name"],
-            i["nickname"]
+            i["nickname"],
+            i["user_id"]
         ))
     return temp_user_list
+
+def add_user(firstname, lastname, user_list):
+    new_user = Users(firstname, lastname, "", uuid4().hex)
+    user_list.append(new_user)
+
+def remove_user(user_id, user_list):
+    for user in user_list:
+        if user.user_id == user_id:
+            user_list.remove(user)
 
 PreviousResults = namedtuple("PreviousResults", [
     "lunch_date",
