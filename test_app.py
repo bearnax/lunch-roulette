@@ -1,4 +1,3 @@
-import unittest
 from app import load_lunch_spots
 
 

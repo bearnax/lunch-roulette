@@ -1,8 +1,6 @@
-import time
 import json
 from datetime import datetime
 import random
-import sys
 from collections import namedtuple
 
 # ======================================================================
@@ -12,9 +10,6 @@ from collections import namedtuple
 lunch_data_filename = "data/lunch_spots_test.json"
 user_data_filename = "data/participants_test.json"
 results_data_filename = "data/results_test.json"
-
-
-
 
 
 
@@ -31,14 +26,6 @@ def load_json(filename):
 def dump_json(filename, data_to_export):
     with open(filename, 'w') as json_data:
         json.dump(data_to_export, json_data, sort_keys=True, indent=4)
-
-#COMMAND LINE FUNCTIONS AND CONTROLS
-
-
-
-
-
-
 
 
 
