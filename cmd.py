@@ -17,8 +17,8 @@ def delay_print(string):
 # ======================================================================
 
 locations = app.load_lunch_spots(app.lunch_data_filename)
-
-
+team = app.load_users(app.user_data_filename)
+results = app.load_results(app.results_data_filename)
 
 
 
@@ -38,13 +38,25 @@ def add_restaurant():
     restaurant_to_add = input("> ")
     app.add_location(restaurant_to_add, locations)
 
+def remove_restaurant():
+
+    list_length = len(locations)
+    print("What restaurant do you wish to remove?")
+    view_restaurants()
+    restaurant_to_remove = input("> ")
+    app.remove_location(restaurant_to_remove, locations)
+    if len(locations) == list_length - 1:
+        print("Successfully removed {}".format(restaurant_to_remove))
+    else:
+        print("Error: 8892011 - see front desk for help.")
+
 def exit():
     return 0
 
 command_options = [
     Command("View Restaurants", view_restaurants),
     Command("Add a Restaurant", add_restaurant),
-    Command("Remove a Restaurant", "rmv res"),
+    Command("Remove a Restaurant", remove_restaurant),
     Command("View Players", "view pl"),
     Command("Add a Player", "add p"),
     Command("Remove a Player", "rmv p"),
@@ -71,6 +83,7 @@ def command_interface():
             else:
                 i.function()
                 return command_interface()
+    return command_interface()
 
 
 command_interface()

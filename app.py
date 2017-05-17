@@ -40,9 +40,9 @@ LunchSpot = namedtuple("LunchSpot", [
     "include"
 ])
 
-def load_lunch_spots(lunch_data_location):
+def load_lunch_spots(data_location):
     temp_lunch_list = []
-    lunch_data = load_json(lunch_data_location)
+    lunch_data = load_json(data_location)
     for i in lunch_data:
         temp_lunch_list.append(LunchSpot(
             i["name"],
@@ -55,9 +55,11 @@ def add_location(location_name, location_list):
     new_location = LunchSpot(location_name, uuid4().hex, True)
     location_list.append(new_location)
 
-def remove_location(location_id, location_list):
+def remove_location(location_input, location_list):
     for location in location_list:
-        if location.location_id == location_id:
+        if location.location_id == location_input:
+            location_list.remove(location)
+        elif location.name.lower() == location_input.lower():
             location_list.remove(location)
 
 Users = namedtuple("Users", [
@@ -67,9 +69,9 @@ Users = namedtuple("Users", [
     "user_id"
 ])
 
-def load_users():
+def load_users(data_location):
     temp_user_list = []
-    user_data = load_json(user_data_filename)
+    user_data = load_json(data_location)
     for i in user_data:
         temp_user_list.append(Users(
             i["first-name"],
@@ -94,9 +96,9 @@ PreviousResults = namedtuple("PreviousResults", [
     "user_respin_id"
 ])
 
-def load_results():
+def load_results(data_location):
     temp_results_list = []
-    results_data = load_json(results_data_filename)
+    results_data = load_json(data_location)
     for i in results_data:
         temp_results_list.append(PreviousResults(
             datetime.strptime(i["lunch_date"], "%Y-%m-%d"),
