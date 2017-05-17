@@ -39,7 +39,6 @@ def add_restaurant():
     app.add_location(restaurant_to_add, locations)
 
 def remove_restaurant():
-
     list_length = len(locations)
     print("What restaurant do you wish to remove?")
     view_restaurants()
@@ -50,6 +49,20 @@ def remove_restaurant():
     else:
         print("Error: 8892011 - see front desk for help.")
 
+def view_players():
+    for i in team:
+        print("{} {}".format(i.first_name, i.last_name))
+
+def add_player():
+    list_length = len(team)
+    player_first_name = input("What's their first name?")
+    player_last_name = input("What's their last name?")
+    app.add_user(player_first_name, player_last_name, team)
+    if len(team) == list_length + 1:
+        print("Successfully added {} {}".format(player_first_name, player_last_name))
+    else:
+        print("Error: 000X29 - see front desk for help.")
+
 def exit():
     return 0
 
@@ -57,8 +70,8 @@ command_options = [
     Command("View Restaurants", view_restaurants),
     Command("Add a Restaurant", add_restaurant),
     Command("Remove a Restaurant", remove_restaurant),
-    Command("View Players", "view pl"),
-    Command("Add a Player", "add p"),
+    Command("View Players", view_players),
+    Command("Add a Player", add_player),
     Command("Remove a Player", "rmv p"),
     Command("Exit", exit)
 ]
@@ -70,7 +83,7 @@ def welcome():
     delay_print("Because I have a good feeling about this month.")
 
 def command_interface():
-    print("What would you like to do?")
+    print("\nWhat would you like to do?")
     counter = 1
     for i in command_options:
         print("{}. {}".format(counter, i.title))
