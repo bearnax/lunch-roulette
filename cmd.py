@@ -19,7 +19,7 @@ def delay_print(string):
 locations = app.load_lunch_spots(app.lunch_data_filename)
 team = app.load_users(app.user_data_filename)
 results = app.load_results(app.results_data_filename)
-
+the_pick = ""
 
 
 
@@ -29,6 +29,13 @@ results = app.load_results(app.results_data_filename)
 # ======================================================================
 
 Command = namedtuple("Command", ["title", "function"])
+
+def make_the_pick():
+    global the_pick
+    the_pick = app.pick_a_spot()
+
+def view_the_pick():
+    print(the_pick.name)
 
 def view_restaurants():
     for i in locations:
@@ -79,6 +86,8 @@ def exit():
     return 0
 
 command_options = [
+    Command("Pick a Place to Eat", make_the_pick),
+    Command("View the Pick", view_the_pick),
     Command("View Restaurants", view_restaurants),
     Command("Add a Restaurant", add_restaurant),
     Command("Remove a Restaurant", remove_restaurant),

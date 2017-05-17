@@ -119,7 +119,7 @@ def remove_recent_locations(list_of_locations, days):
 
     """
     temp_list = list_of_locations
-    results = load_results()
+    results = load_results(results_data_filename)
 
     for result in results:
         for location in temp_list:
