@@ -55,13 +55,25 @@ def view_players():
 
 def add_player():
     list_length = len(team)
-    player_first_name = input("What's their first name?")
-    player_last_name = input("What's their last name?")
+    player_first_name = input("What's their first name?\n> ")
+    player_last_name = input("What's their last name?\n> ")
     app.add_user(player_first_name, player_last_name, team)
     if len(team) == list_length + 1:
         print("Successfully added {} {}".format(player_first_name, player_last_name))
     else:
         print("Error: 000X29 - see front desk for help.")
+
+def remove_player():
+    list_length = len(team)
+    print("What player do you want to remove?")
+    view_players()
+    player_first_name = input("What's their first name?\n> ")
+    player_last_name = input("What's their last name?\n> ")
+    app.remove_user(player_first_name, player_last_name, team)
+    if len(team) == list_length - 1:
+        print("Successfully removed {} {}".format(player_first_name, player_last_name))
+    else:
+        print("Error: 000X30 - see front desk for help.")
 
 def exit():
     return 0
@@ -72,7 +84,7 @@ command_options = [
     Command("Remove a Restaurant", remove_restaurant),
     Command("View Players", view_players),
     Command("Add a Player", add_player),
-    Command("Remove a Player", "rmv p"),
+    Command("Remove a Player", remove_player),
     Command("Exit", exit)
 ]
 

@@ -85,9 +85,9 @@ def add_user(firstname, lastname, user_list):
     new_user = Users(firstname, lastname, "", uuid4().hex)
     user_list.append(new_user)
 
-def remove_user(user_id, user_list):
+def remove_user(user_first_name, user_last_name, user_list):
     for user in user_list:
-        if user.user_id == user_id:
+        if user.first_name.lower() == user_first_name.lower() and user.last_name.lower() == user_last_name.lower():
             user_list.remove(user)
 
 PreviousResults = namedtuple("PreviousResults", [
