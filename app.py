@@ -8,7 +8,7 @@ from uuid import uuid4
 #                                                      DEFINE CONSTANTS
 # ======================================================================
 
-lunch_data_filename = "data/lunch_spots_test.json"
+lunch_data_filename = "data/lunch_spots.json"
 user_data_filename = "data/participants_test.json"
 results_data_filename = "data/results_test.json"
 

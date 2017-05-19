@@ -33,6 +33,7 @@ Command = namedtuple("Command", ["title", "function"])
 def make_the_pick():
     global the_pick
     the_pick = app.pick_a_spot()
+    print("{}\n".format(the_pick.name.upper()))
 
 def view_the_pick():
     print(the_pick.name)
