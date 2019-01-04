@@ -2,15 +2,12 @@ import json
 from datetime import datetime
 import random
 from collections import namedtuple
+from db_functions import DatabaseController
 
-# ======================================================================
-#                                                      DEFINE CONSTANTS
-# ======================================================================
 
 lunch_data_filename = "data/lunch_spots_test.json"
 user_data_filename = "data/participants_test.json"
 results_data_filename = "data/results_test.json"
-
 
 
 
@@ -117,3 +114,7 @@ def pick_a_spot():
     filtered_list = remove_recent_locations(load_lunch_spots(lunch_data_filename), 364)
 
     return random.choice(filtered_list)
+
+
+if __name__='__main__':
+    DatabaseController.connect()
